@@ -1,0 +1,57 @@
+<!-- templates/dashboard/dashboard.html -->
+
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#confirmed-cases">Confirmed Cases</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#recoveries">Recoveries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#states">States</a>
+        </li>
+        <li>
+          <a href="/signout" class="btn btn-danger">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <h2>Welcome!</h2>
+  {% if user.is_authenticated %} Hi {{ user.username }}!
+
+  <!-- Display confirmed cases, recoveries, and states information -->
+  {% comment %}
+  <div id="confirmed-cases">
+    <h3>Confirmed Cases in {{ user_country }}</h3>
+    <ul>
+      {% for entry in data %}
+      <li>{{ entry.date }}: {{ entry.confirmedcases }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <hr />
+
+  <div id="recoveries">
+    <h3>Recoveries in {{ user_country }}</h3>
+    <ul>
+      {% for entry in data %}
+      <li>{{ entry.date }}: {{ entry.recoveredcases }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <hr />
+
+  <div id="states">
+    <h3>States in {{ user_country }}</h3>
+    <!-- Add logic to display states information -->
+  </div>
+  {% endcomment %} {% endif %}
+</div>
+{% endblock %}

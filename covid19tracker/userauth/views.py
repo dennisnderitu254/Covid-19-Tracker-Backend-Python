@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -37,7 +38,8 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/profile') #Profile
+            return redirect(reverse('dashboard:dashboard')) # redirects to the user dashboard with data
+            # return redirect('/profile') #Profile
     else:
         msg = 'Error Login'
         form = AuthenticationForm()
