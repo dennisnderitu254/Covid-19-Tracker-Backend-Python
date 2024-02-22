@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userauth',
     'dashboard',
+    'states',
+    'confirmedcases',
+    'reports',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,12 @@ ROOT_URLCONF = 'covid19tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add the project-level templates directory
+        'DIRS': [
+            os.path.join(BASE_DIR, 'userauth/templates'),
+            os.path.join(BASE_DIR, 'dashboard/templates'),
+            os.path.join(BASE_DIR, 'confirmedcases/templates'),
+            os.path.join(BASE_DIR, 'reports/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

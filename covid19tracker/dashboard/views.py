@@ -1,16 +1,18 @@
-# views.py
-
 from django.shortcuts import render
-from .models import Covid19Data
+from django.views import View
 
-def dashboard(request):
-    user_country = "User's Country"  # Replace with logic to get the user's country
+class DashboardView(View):
+    def get(self, request):
+        return render(request, 'dashboard/dashboard.html')
 
-    data = Covid19Data.objects.filter(countryid__name=user_country).order_by('-date')[:10]
+def allcases(request):
+    return render(request, 'dashboard/templates/allcases.html')
 
-    context = {
-        'user_country': user_country,
-        'data': data,
-    }
+def dailyreports(request):
+    return render(request, 'dashboard/templates/dailyreports.html')
 
-    return render(request, 'dashboard/dashboard.html', context)
+def confirmedcases(request):
+    return render(request, 'dashboard/templates/confirmedcases.html')
+
+def regions(request):
+    return render(request, 'dashboard/templates/regions.html')

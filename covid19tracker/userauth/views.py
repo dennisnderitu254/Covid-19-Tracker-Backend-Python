@@ -1,12 +1,12 @@
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import logout
+from django.http import HttpResponse
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'userauth/home.html')
 
 def signup(request):
     if request.user.is_authenticated:
@@ -24,29 +24,34 @@ def signup(request):
             login(request, user)
             return redirect('/')
         else:
-            return render(request, 'signup.html', {'form': form})
+            return render(request, 'userauth/signup.html', {'form': form})
     else:
         form = UserCreationForm()
-        return render(request, 'signup.html', {'form': form})
+        return render(request, 'userauth/signup.html', {'form': form})
 
 def signin(request):
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        return render(request, 'userauth/home.html')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
-            return redirect(reverse('dashboard:dashboard')) # redirects to the user dashboard with data
+            return redirect(reverse('dashboard:dashboard'))
             # return redirect('/profile') #Profile
+        else:
+            msg = 'Invalid login credentials'
+            form = AuthenticationForm()
+            return render(request, 'userauth/signin.html', {'form': form, 'msg': msg})
     else:
-        msg = 'Error Login'
         form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form, 'msg' : msg})
+        return render(request, 'userauth/signin.html', {'form': form})
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'userauth/profile.html')
 
 def signout(request):
     logout(request)

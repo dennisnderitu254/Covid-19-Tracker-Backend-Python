@@ -1,0 +1,6 @@
+<h2>Confirmed Cases List</h2>
+<ul>
+  {% for case in cases %}
+    <li>{{ case.date_reported }} - {{ case.cases }} cases</li>
+  {% endfor %}
+</ul>

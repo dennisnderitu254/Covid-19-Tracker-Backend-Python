@@ -1,0 +1,6 @@
+<h2>Reports List</h2>
+<ul>
+    {% for report in reports %}
+        <li>{{ report.title }} - {{ report.content }}</li>
+    {% endfor %}
+</ul>
