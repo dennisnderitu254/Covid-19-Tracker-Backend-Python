@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('userauth.urls')),
     path('dashboard/', include(('dashboard.urls', 'dashboard'), namespace='dashboard')),
-    path('userauth/', include('userauth.urls')),
+    path('userauth/', include(('userauth.urls', 'userauth'), namespace='userauth')),
     path('confirmedcases/', include('confirmedcases.urls')),
     path('states/', include('states.urls')),
     path('reports/', include('reports.urls')),
