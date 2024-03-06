@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Confirmed Cases</title>
+    <title>About Covid19Tracker</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
@@ -35,53 +35,23 @@
         </div>
     </nav>
 
-<!-- Your content goes here -->
+<div class="container mt-4">
+    <h3>About Covid19Tracker</h3>
+    <p>
+        Welcome to Covid19Tracker, your go-to source for up-to-date information on COVID-19 cases worldwide.
+        Our mission is to provide accurate and reliable data to help you stay informed during these challenging times.
+        Explore the latest statistics, travel advice, and more.
+    </p>
+    <!-- Add any additional information you want to include on the About page -->
 
+</div>
 
-<tbody>
-    <!-- Dynamic Data from Django Template -->
-    {% for country_data in countries_data %}
-        <tr>
-            <td>{{ country_data.country }}</td>
-            <td>{{ country_data.total_cases }}</td>
-            <td>{{ country_data.recovered }}</td>
-            <td>{{ country_data.deaths }}</td>
-        </tr>
-    {% endfor %}
-</tbody>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script>
-    // Sample Chart Data
-    var ctx = document.getElementById('totalCasesChart').getContext('2d');
-    var totalCasesChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Kenya', 'Uganda', 'Tanzania'],
-            datasets: [{
-                label: 'Total Cases',
-                data: [1000, 500, 5000],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+<!-- Add any additional scripts or libraries as needed -->
 
 </body>
 </html>

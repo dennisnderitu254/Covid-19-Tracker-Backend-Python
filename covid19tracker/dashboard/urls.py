@@ -1,13 +1,17 @@
 from django.urls import path
-from .views import DashboardView, allcases, dailyreports, confirmedcases, regions
+from django.contrib.auth.views import LogoutView
+from . import views
 
 app_name = 'dashboard'
 
 urlpatterns = [
-    path('', DashboardView.as_view(), name='dashboard'),
-    path('dashboard/', DashboardView.as_view(), name='dashboard'),
-    path('allcases/', allcases, name='allcases'),
-    path('dailyreports/', dailyreports, name='dailyreports'),
-    path('confirmedcases/', confirmedcases, name='confirmedcases'),
-    path('regions/', regions, name='regions'),
+    path('regions/', views.regions, name='regions'),
+    path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
+    path('allcases/', views.allcases, name='allcases'),
+    path('dailyreports/', views.dailyreports, name='dailyreports'),
+    path('confirmedcases/', views.confirmedcases, name='confirmedcases'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    path('traveladvice/', views.traveladvice, name='traveladvice'),
+    path('signout/', LogoutView.as_view(), name='signout'),
 ]

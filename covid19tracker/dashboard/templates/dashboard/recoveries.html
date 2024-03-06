@@ -3,45 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Covid19Tracker</title>
+    <title>Covid19Tracker - Recoveries</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand mr-auto" href="#">Covid19Tracker</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:regions' %}">Regions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:about' %}">About Covid-19</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:contact' %}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:traveladvice' %}">Travel Advice</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:signout' %}">Sign Out</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<!-- Your content goes here -->
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand mr-auto" href="#">Covid19Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:regions' %}">Regions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:about' %}">About Covid-19</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:contact' %}">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:traveladvice' %}">Travel Advice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#signout">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
-            <h3>Confirmed Cases</h3>
+            <h3>Recovered Cases</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -52,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Sample Data -->
+                    <!-- Sample Data (Replace with actual data) -->
                     <tr>
                         <td>Kenya</td>
                         <td>1000</td>
@@ -75,12 +72,12 @@
             </table>
         </div>
 
-        <!-- Sample Chart -->
+        <!-- Sample Chart (Replace with actual data) -->
         <div class="col-md-6">
-            <h3>Chart: Total Cases</h3>
+            <h3>Chart: Recovered Cases</h3>
             <div class="card">
                 <div class="card-body">
-                    <canvas id="totalCasesChart" width="400" height="300"></canvas>
+                    <canvas id="recoveredCasesChart" width="400" height="300"></canvas>
                 </div>
             </div>
         </div>
@@ -96,22 +93,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Sample Chart Data
-    var ctx = document.getElementById('totalCasesChart').getContext('2d');
-    var totalCasesChart = new Chart(ctx, {
+    // Sample Chart Data (Replace with actual data)
+    var ctx = document.getElementById('recoveredCasesChart').getContext('2d');
+    var recoveredCasesChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Kenya', 'Uganda', 'Tanzania'],
             datasets: [{
-                label: 'Total Cases',
-                data: [1000, 500, 5000],
+                label: 'Recovered Cases',
+                data: [800, 400, 300],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                 ],
