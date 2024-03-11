@@ -2,9 +2,11 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from . import views
 
+
 app_name = 'dashboard'
 
 urlpatterns = [
+    path('allcases/', views.allcases, name='allcases'),
     path('regions/', views.regions, name='regions'),
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
     path('allcases/', views.allcases, name='allcases'),

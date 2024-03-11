@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +42,34 @@
 
 <!-- Your content goes here -->
 
-
+<head>
+    <title>All Cases</title>
+</head>
+<body>
+    <h1>All Cases</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>State</th>
+                <th>County</th>
+                <th>Confirmed</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for case in all_cases %}
+                <tr>
+                    <td>{{ case.state }}</td>
+                    <td>{{ case.county }}</td>
+                    <td>{{ case.confirmed }}</td>
+                    <td>{{ case.deaths }}</td>
+                    <td>{{ case.recovered }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 
 
 <!-- Bootstrap JS and dependencies -->
@@ -86,3 +115,8 @@
 
 </body>
 </html>
+
+
+
+
+

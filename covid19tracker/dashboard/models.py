@@ -34,3 +34,15 @@ class Region(models.Model):
     class Meta:
         managed = False
         db_table = 'Region'
+
+class Cases(models.Model):
+    id = models.AutoField(db_column='id', primary_key=True)
+    state = models.CharField(db_column='State', max_length=45)
+    county = models.CharField(db_column='County', max_length=45)
+    confirmed = models.CharField(db_column='Confirmed', max_length=45)
+    deaths = models.CharField(db_column='Deaths', max_length=45)
+    recovered = models.CharField(db_column='Recovered', max_length=45)
+
+    class Meta:
+        managed = False
+        db_table = 'Cases'

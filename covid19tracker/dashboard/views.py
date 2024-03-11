@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth import logout
+from .models import Cases
 
 class DashboardView(View):
     def get(self, request):
         return render(request, 'dashboard/dashboard.html')
 
 def allcases(request):
-    return render(request, 'dashboard/allcases.html')
+    all_cases = Cases.objects.all()
+    return render(request, 'dashboard/allcases.html', {'all_cases': all_cases})
 
 def dailyreports(request):
     return render(request, 'dashboard/dailyreports.html')
