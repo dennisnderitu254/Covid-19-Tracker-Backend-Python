@@ -38,10 +38,16 @@
     </div>
 </nav>
 
-<!-- Your content goes here -->
-
-
-
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="totalCasesChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="recoveredCasesChart"></canvas>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -53,8 +59,8 @@
 
 <script>
     // Sample Chart Data
-    var ctx = document.getElementById('totalCasesChart').getContext('2d');
-    var totalCasesChart = new Chart(ctx, {
+    var ctx1 = document.getElementById('totalCasesChart').getContext('2d');
+    var totalCasesChart = new Chart(ctx1, {
         type: 'bar',
         data: {
             labels: ['Kenya', 'Uganda', 'Tanzania'],
@@ -70,6 +76,36 @@
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById('recoveredCasesChart').getContext('2d');
+    var recoveredCasesChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Kenya', 'Uganda', 'Tanzania'],
+            datasets: [{
+                label: 'Recovered Cases',
+                data: [800, 300, 4500],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                 ],
                 borderWidth: 1
             }]

@@ -29,6 +29,14 @@ def contact(request):
 def traveladvice(request):
     return render(request, 'dashboard/traveladvice.html')
 
+def search_cases(request):
+    search_query = request.GET.get('search_query', '')
+    
+    # Perform a case-insensitive search in the state field
+    cases = Cases.objects.filter(state__icontains=search_query)
+    
+    return render(request, 'dashboard/search_cases.html', {'cases': cases, 'search_query': search_query})
+
 def signout(request):
     logout(request)
     return redirect('/')

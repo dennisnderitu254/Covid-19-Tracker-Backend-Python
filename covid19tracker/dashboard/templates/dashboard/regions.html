@@ -38,6 +38,45 @@
         </div>
     </nav>
 
+    <p style="font-weight: bold;">Search American State</p>
+    <p style="font-weight: bold;">Available states</p>
+    <ol>
+        <li>California</li>
+        <li>Texas</li>
+        <li>Florida</li>
+        <li>New York</li>
+        <li>Illinois</li>
+        <li>Washington</li>
+        <li>Arizona</li>
+        <li>Georgia</li>
+        <li>North Carolina</li>
+        <li>Massachusetts</li>
+        <li>Virginia</li>
+        <li>Pennsylvania</li>
+        <li>Ohio</li>
+        <li>Michigan</li>
+        <li>Colorado</li>
+    </ol>
+    
+    <form class="form-inline my-2 my-lg-0" action="{% url 'dashboard:search_cases' %}" method="GET">
+        
+        <input class="form-control mr-sm-2" type="search" placeholder="Search American State" aria-label="Search" name="search_query">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    
+
+    {% if cases %}
+    <div class="search-results">
+        <h3>Search Results</h3>
+        <ul>
+            {% for case in cases %}
+                <li>{{ case.state }} - {{ case.county }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <p>No matching cases found.</p>
+{% endif %}
 
 
 <!-- Bootstrap JS and dependencies -->

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Covid19Tracker - Daily Reports</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand mr-auto" href="#">Covid19Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:allcases' %}">Cases</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:regions' %}">Regions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:about' %}">About Covid-19</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:contact' %}">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:traveladvice' %}">Travel Advice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userauth:signout' %}">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Daily Reports</h3>
+            {% block content %}
+            <h2>Search Results for "{{ search_query }}"</h2>
+        
+            {% if cases %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">State</th>
+                            <th scope="col">County</th>
+                            <th scope="col">Confirmed</th>
+                            <th scope="col">Deaths</th>
+                            <th scope="col">Recovered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for case in cases %}
+                            <tr>
+                                <td>{{ case.state }}</td>
+                                <td>{{ case.county }}</td>
+                                <td>{{ case.confirmed }}</td>
+                                <td>{{ case.deaths }}</td>
+                                <td>{{ case.recovered }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        {% endblock %}
+        </div>
+
+        <!-- Sample Chart (Replace with actual data) -->
+        <div class="col-md-6">
+            <h3>Chart: Daily Reports</h3>
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="dailyReportsChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Chart.js for creating charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var ctx = document.getElementById('dailyReportsChart').getContext('2d');
+    var dailyReportsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2024-03-01', '2024-03-02', '2024-03-03'],
+            datasets: [{
+                label: 'New Cases',
+                data: [1000, 500, 1500],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }, {
+                label: 'New Recoveries',
+                data: [800, 400, 1200],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }, {
+                label: 'New Deaths',
+                data: [50, 20, 100],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
