@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Covid19Data(models.Model):
     dataid = models.AutoField(db_column='DataID', primary_key=True)  # Field name made lowercase.
     countryid = models.ForeignKey('Country', models.DO_NOTHING, db_column='CountryID')  # Field name made lowercase.
@@ -46,3 +47,9 @@ class Cases(models.Model):
     class Meta:
         managed = False
         db_table = 'Cases'
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)

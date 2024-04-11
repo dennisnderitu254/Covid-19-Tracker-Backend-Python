@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import logout
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import Cases
 
 class DashboardView(View):
@@ -24,6 +26,22 @@ def about(request):
     return render(request, 'dashboard/about.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        message = request.POST.get('message', '')
+
+        # Send email
+        send_mail(
+            'Contact Form Submission',
+            f'Name: {name}\nEmail: {email}\nMessage: {message}',
+            settings.EMAIL_HOST_USER,
+            ['planetnderitu@gmail.com'],  # Send to planetnderitu@gmail.com
+            fail_silently=False,
+        )
+
+        return render(request, 'dashboard/contact_success.html')
+
     return render(request, 'dashboard/contact.html')
 
 def traveladvice(request):
